@@ -1,0 +1,14 @@
+public class EntreIdade {
+    public static void VerificarIdade() {
+        double porcentagem = 0;
+        for (int i = 0; i < Main.lista.size(); i++)
+        {
+            if (Main.lista.get(i).getIdade()<30 && Main.lista.get(i).getIdade()>10
+                    &&Main.lista.get(i).getAltura() > 1.90) {
+                porcentagem++;
+            }
+        }
+        porcentagem = (porcentagem / Main.lista.size())*100;
+        System.out.printf("A porcentagem de pessoas com mais de 10 anos\n e menos de 30 anos e com peso maior que 1,90m é %.1f%%" ,porcentagem);
+    }
+}
