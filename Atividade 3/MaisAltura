@@ -1,0 +1,11 @@
+public class MaisAltura {
+    public static void  CalcularAltura(){
+        int quantidadePessoas =0;
+        for (int i =0; i< Main.lista.size(); i++){
+            if (Main.lista.get(i).getPeso() > 90 && Main.lista.get(i).getAltura() > 1.50){
+                quantidadePessoas++;
+            }
+        }
+        System.out.println("A quantidade de pessoas com mais de 1,5m e mais de 90kg é: "+quantidadePessoas);
+    }
+}
