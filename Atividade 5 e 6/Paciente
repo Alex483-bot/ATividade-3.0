@@ -1,0 +1,59 @@
+//. Criar a estrutura de dados para armazenar os dados dos
+// pacientes cadastrados no sistema.(Array List)
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Paciente {
+    private int idPaciente;
+    private String nomePaciente;
+    private String dataNascimento;
+    private String telefone;
+    private String endereco;
+    static ArrayList<Paciente> ListaPaciente = new ArrayList<>();
+
+    public Paciente(String nomePaciente, String dataNascimento, String telefone, String endereco) {
+        this.nomePaciente = nomePaciente;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public static void cadastrarPaciente() {
+        Scanner sc = new Scanner(System.in);
+
+
+        System.out.println("Cadastrando Paciente");
+
+        System.out.println("Digite o nome do Pacinete");
+        String nomePaciente = sc.nextLine();
+
+        System.out.println("Digite a data de Nascimento do Pacinete");
+        String dataNascimento = sc.nextLine();
+
+        System.out.println("Digite o telefone do Pacinete");
+        String telefone = sc.nextLine();
+
+        System.out.println("Digite o endereco do Pacinete");
+        String endereco = sc.nextLine();
+
+        Paciente novoPaciente = new Paciente(nomePaciente, dataNascimento, telefone, endereco);
+        ListaPaciente.add(novoPaciente);
+        System.out.println("Paciente cadastrado com sucesso!");
+        sc.close();
+    }
+
+    public static void obterPaciente() {
+        for (int i = 0; i < ListaPaciente.size(); i++) {
+            System.out.println("Paciente" + (i + 1));
+            System.out.println(ListaPaciente.get(i).nomePaciente);
+            System.out.println(ListaPaciente.get(i).dataNascimento);
+            System.out.println(ListaPaciente.get(i).telefone);
+            System.out.println(ListaPaciente.get(i).endereco);
+            System.out.println();
+        }
+
+    }
+}
+
+    //getters e setters
+
