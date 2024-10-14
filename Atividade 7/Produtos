@@ -1,0 +1,142 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashSet;
+public class Produtos {
+    private String nome;
+    private int codigo;
+    private double valorUnidade;
+    private String tipoUnidade;
+
+    public static ArrayList<Produtos>listaProdutos = new ArrayList<>();
+    static HashSet <Integer> set = new HashSet<>();
+
+public Produtos (String nome, int codigo, double valorUnidade, String tipoUnidade) {
+    this.nome = nome;
+    this.codigo = codigo;
+    this.valorUnidade = valorUnidade;
+    this.tipoUnidade = tipoUnidade;
+}
+public String getNome() {
+    return nome;
+
+}
+public double getValorUnidade() {
+    return valorUnidade;
+}
+public String getTipoUnidade() {
+    return tipoUnidade;
+}
+
+public void setNome(String nome) {
+    this.nome = nome;
+}
+public void setValorUnidade(double valorUnidade) {
+    this.valorUnidade = valorUnidade;
+}
+
+public void setTipoUnidade(String tipoUnidade) {
+    this.tipoUnidade = tipoUnidade;
+}
+public static void CadastrarProduto(){
+    Scanner sc = new Scanner(System.in);
+    int codigo =0;
+
+    System.out.println("Digite o nome do produto: ");
+    String nome = sc.nextLine();
+
+    do{
+        codigo++;
+    }while(set.contains(codigo));
+    System.out.println("O codigo do produto é " +codigo);
+    set.add(codigo);
+    System.out.print("Digite o valor do produto:R$");
+    double valor = sc.nextDouble();
+    sc.nextLine();
+    System.out.println("Digite o tipo de produto: ");
+    String tipo = sc.nextLine();
+
+
+    Produtos novoProduto = new Produtos(nome, codigo, valor, tipo);
+    listaProdutos.add(novoProduto);
+    }
+public static void  imprimirProdutos() {
+    if (listaProdutos.isEmpty()) {
+        System.out.println("Nenhum produto cadastrado");
+    }
+    for (int i = 0; i < listaProdutos.size(); i++) {
+
+        System.out.println("Produto "+(i+1));
+        System.out.println("NOME: " +listaProdutos.get(i).nome);
+        System.out.println("CÓDIGO: " +listaProdutos.get(i).codigo);
+        System.out.println("VALOR POR UNIDADE: R$" +listaProdutos.get(i).valorUnidade);
+        System.out.println("TIPO DE UNIDADE " +listaProdutos.get(i).tipoUnidade);
+        System.out.println();
+    }
+}
+public static void alterarProduto() {
+    int opcao;
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Digite o códido do produto que deseja alterar: ");
+    int codigo = sc.nextInt();
+
+    if(set.contains(codigo)) {
+        do {
+            System.out.println("O que deseja alterar neste produto?");
+            System.out.println("1- NOME");
+            System.out.println("2- VALOR UNITARIO");
+            System.out.println("3- TIPO DE UNIDADE");
+            System.out.println("4- Sair");
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("O produto atulmente se chama" + listaProdutos.get(codigo - 1).nome);
+                    System.out.println("Digite o novo nome do produto:");
+                    sc.nextLine();
+                    String nomenew = sc.nextLine();
+                    Produtos Temp = listaProdutos.get(codigo - 1);
+                    Temp.setNome(nomenew);
+                    System.out.println("Nome alterado com sucesso!");
+                    break;
+                case 2:
+                    System.out.println("O produto " + listaProdutos.get(codigo - 1).nome +
+                            "custa atualmete R$" + listaProdutos.get(codigo - 1).valorUnidade);
+                    System.out.println("Digite o novo valor do produto:\n R$");
+                    double novovalor = sc.nextDouble();
+                    Produtos temp = listaProdutos.get(codigo - 1);
+                    temp.setValorUnidade(novovalor);
+                    System.out.println("Valor da produto alterado com sucesso!");
+                    break;
+                case 3:
+                    System.out.println("O produto " + listaProdutos.get(codigo - 1).nome +
+                            "é do tipo " + listaProdutos.get(codigo - 1).tipoUnidade);
+                    System.out.println("Digite o novo tipo da produto:");
+                    String novoTipo = sc.nextLine();
+                    Produtos Temp2 = listaProdutos.get(codigo - 1);
+                    Temp2.setTipoUnidade(novoTipo);
+                    System.out.println("Tipo da produto alterado com sucesso!");
+                    break;
+                default:
+                    System.out.println("Número Invalido");
+            }
+        }while (opcao !=4);
+    }
+    else {
+        System.out.println("Codigo Invalido. Verifique o codigo do produto que deseja alterar");
+        return;
+    }
+    sc.close();
+}
+public static void excluirProduto(){
+    Scanner sc = new Scanner(System.in);
+    int codigo;
+    System.out.println("Digite o codigo do produto que deseja excluir: ");
+    codigo = sc.nextInt();
+    if(set.contains(codigo)) {
+        listaProdutos.remove(codigo-1);
+        set.remove(codigo);
+        System.out.println("Produto removido com sucesso");
+    }
+    sc.close();
+}
+}
