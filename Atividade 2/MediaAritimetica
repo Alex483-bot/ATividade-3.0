@@ -1,0 +1,30 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class MediaAritimetica {
+    private double resultadoArimetico;
+    static ArrayList<MediaAritimetica> ListaAritimetica = new ArrayList<>();
+
+
+    public MediaAritimetica(double resultado) {
+        this.resultadoArimetico = resultado;
+    }
+
+    public static void calcularMediaAriticmetica() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite um numero: ");
+        double num1 = sc.nextDouble();
+        System.out.println("Digite um segundo numero: ");
+        double num2 = sc.nextDouble();
+        double resultado = (num1 + num2) / 2;
+        System.out.println("A média aritimética é " + resultado);
+        MediaAritimetica novaMedia = new MediaAritimetica(resultado);
+        ListaAritimetica.add(novaMedia);
+    }
+
+    public static void imprimirLista() {
+        for (int i = 0; i < ListaAritimetica.size(); i++) {
+            System.out.println("Media " + (i+1));
+            System.out.println(ListaAritimetica.get(i).resultadoArimetico);
+        }
+    }
+}
