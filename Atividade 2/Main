@@ -1,0 +1,53 @@
+//2. Faça um programa que apresente o menu de opções a seguir:
+//Menu de opções:
+//1. Média aritmética
+//2. Média ponderada
+//3. Sair
+//Digite a opção desejada.
+//Na opção 1: receber duas notas, calcular e mostrar a média aritmética.
+//Na opção 2: receber três notas e seus respectivos pesos, calcular e mostrar média ponderada.
+//Na opção 3: sair do programa.
+//Verifique a possibilidade de opção inválida. Nesse caso, o programa deverá mostrar uma mensagem.
+
+
+import java.util.Scanner;
+public class Main {
+    //2. Faça um programa que apresente o menu de opções a seguir:
+    //Menu de opções:
+    //1. Média aritmética
+    //2. Média ponderada
+    //3. Sair
+    //Digite a opção desejada.
+    //Na opção 1: receber duas notas, calcular e mostrar a média aritmética.
+    //Na opção 2: receber três notas e seus respectivos pesos, calcular e
+    // mostrar média ponderada.
+    //Na opção 3: sair do programa.
+    //Verifique a possibilidade de opção inválida. Nesse caso, o programa deverá mostrar uma mensagem
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+        do {
+            System.out.println("MENU");
+            System.out.println("1. Media Aritimética");
+            System.out.println("2. Media Ponderada");
+            System.out.println("3. Sair");
+            System.out.println("Escolha um número");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1 :
+                    MediaAritimetica.calcularMediaAriticmetica();
+                    MediaAritimetica.imprimirLista();
+                    break;
+                case 2:
+                    MediaPonderada.CalcularMediaPonderada();
+                    MediaPonderada.imprimirResultado();
+                    break;
+                case 3:
+                    System.out.println("Saindo");
+                    break;
+                default:
+                    System.out.println("Número invalido. Tente novamente.");f
+            }
+        }while (opcao != 3);
+    }
+}
