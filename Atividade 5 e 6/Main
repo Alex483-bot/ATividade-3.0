@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            System.out.println("MENU");
+            System.out.println("1. Cadastro de Médico");
+            System.out.println("2. Cadastro de Paciente");
+            System.out.println("3. Agendamentos");
+            System.out.println("4. Sair");
+            System.out.println("Escolha uma opção");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    Medico.cadastrarMedico();
+                    Medico.listarMedicos();
+                    break;
+                case 2:
+                    Paciente.cadastrarPaciente();
+                    Paciente.obterPaciente();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Numero invalido. Tente novamente.");
+            }
+        }while (option != 4);
+        sc.close();
+    }
+}
