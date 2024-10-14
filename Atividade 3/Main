@@ -1,0 +1,50 @@
+//3. Faça um programa que receba dez idades, pesos e alturas, calcule e mostre:
+//• a média das idades das dez pessoas;
+//• o total que possui superior a 90 kg e altura inferior a 1,50 metro;
+//• a porcentagem de pessoas com idade entre 10 e 30 anos entre aquelas que medem mais de
+//1,90 m;
+//• uma opção para apresentar todos os dados coletados
+
+
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main {
+    private final int idade;
+    private final double peso;
+    private final double altura;
+    static ArrayList<Main> lista =  new ArrayList<>();
+    public Main(int idade, double peso, double altura) {
+        this.idade = idade;
+        this.peso = peso;
+        this.altura = altura;
+    }
+    public int getIdade() {
+        return idade;
+    }
+    public double getAltura(){
+        return altura;
+    }
+    public double getPeso() {
+        return peso;
+    }
+    public static void main(){
+        Scanner sc = new Scanner(System.in);
+        int idade;
+        double peso;
+        double altura;
+        for(int i =0; i< 10; i++){
+            System.out.println("Pessoa "+(i+1));
+            System.out.println("Digite a idade dessa pessoa");
+            idade = sc.nextInt();
+            System.out.println("Digite a altura dessa pessoa");
+            altura = sc.nextDouble();
+            System.out.println("Digite o peso dessa pessoa");
+            peso = sc.nextDouble();
+            Main novaPessoa = new Main(idade, peso, altura);
+            lista.add(novaPessoa);
+        }
+        Media.calcularMedia();
+        MaisAltura.CalcularAltura();
+        EntreIdade.VerificarIdade();
+    }
+}
