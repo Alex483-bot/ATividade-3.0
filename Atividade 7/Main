@@ -1,0 +1,59 @@
+//7. Criar um algoritmo para auxiliar na lojinha do Sr. Abu.
+//(a) O sistema deve permitir o cadastro de produtos. Cada item possui código único, nome,
+//valor unitário e tipo de unidade.
+//(b) Permitir o cadastro, alteração e a exclusão de produtos.
+//(c) Realizar a venda, para isso, é necessário informar o código do produto, e a quantidade.
+//Deve existir a opção de finalizar a compra.
+//(d) Definir a forma de pagamento
+//i. Pix - Mostrar o código.
+//ii. Cartão - Crédito ou débito - Solicitar os dados para pagamento
+//iii. Dinheiro - Solicitar o valor pago e informar o troco.
+
+import java.util.Scanner;
+public class Main {
+    public static void main() {
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+        int opcao2;
+
+        do {
+            System.out.println("MENU");
+            System.out.println("1. Informações do produto");
+            System.out.println("2. Realizar Venda");
+            System.out.println("3. Sair");
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    do {
+                        System.out.println("1. Cadastrar Produto");
+                        System.out.println("2. Alterar Produto");
+                        System.out.println("3. Excluir Produto");
+                        System.out.println("4. Listar Produtos");
+                        System.out.println("5. Sair");
+                        System.out.println("Escolha uma opção");
+                        opcao2 = sc.nextInt();
+                        switch (opcao2) {
+                            case 1:
+                                Produtos.CadastrarProduto();
+                                break;
+                            case 2:
+                                Produtos.alterarProduto();
+                                break;
+                            case 3:
+                                Produtos.excluirProduto();
+
+                            case 4:
+                                Produtos.imprimirProdutos();
+                                break;
+                        }
+                    } while (opcao2 != 5);
+                    break;
+                    case 2:
+                        Venda.realizarVenda();
+                        break;
+            }
+        }while (opcao != 3) ;
+
+    }
+}
