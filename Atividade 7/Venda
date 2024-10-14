@@ -1,0 +1,94 @@
+import java.util.Scanner;
+public class Venda {
+    private double valorTotal;
+    private int quantidade;
+    private String PIX = "123456789";
+    private String numCartao;
+    private String nomeCartao;
+    private String cvv;
+    private String vencimento;
+public Venda(int quantidade, double valorTotal) {
+    this.quantidade = quantidade;
+    this.valorTotal = valorTotal;
+}
+public  void setNumCartao(String numCartao) {
+    this.numCartao = numCartao;
+}
+public void setNomeCartao(String nomeCartao) {
+    this.nomeCartao = nomeCartao;
+}
+public void setCvv(String cvv) {
+    this.cvv = cvv;
+}
+public void setVencimento(String vencimento) {
+    this.vencimento = vencimento;
+}
+public String getPIX() {
+    return PIX;
+}
+
+public double getValorTotal() {
+    return valorTotal;
+}
+public static void realizarVenda(){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Digite o código do produto que deseja realizar a venda");
+    int codigo = sc.nextInt();
+    if (Produtos.set.contains(codigo)) {
+        int opcao;
+        do {
+            System.out.println("Informações do produto");
+            System.out.println(Produtos.listaProdutos.get(codigo - 1).getNome());
+            System.out.println(Produtos.listaProdutos.get(codigo - 1).getTipoUnidade());
+            System.out.println(Produtos.listaProdutos.get(codigo - 1).getValorUnidade());
+            System.out.println("Digite a quantidade de produtos dessa venda");
+            int quantidade = sc.nextInt();
+            double valorTotal = Produtos.listaProdutos.get(codigo - 1).getValorUnidade() * quantidade;
+            System.out.println("O valor total da venda é de R$" +valorTotal);
+            int opt;
+            System.out.println("Selecione a forma de pagamento");
+            System.out.println("1. PIX");
+            System.out.println("2. CARTAO");
+            System.out.println("3. Dinheiro");
+            opt = sc.nextInt();
+            Venda venda = new Venda(codigo, quantidade);
+
+            switch (opt) {
+                case 1:
+                    System.out.println("PIX" + venda.getPIX());
+                    System.out.println("Faça o PIX no valor de R$" + venda.getValorTotal());
+                    break;
+                case 2:
+                    sc.nextLine();
+                    System.out.println("Digite o número do cartão");
+                    venda.setNumCartao(sc.nextLine());
+                    System.out.println("Digite o nome do títular do cartão");
+                    venda.setNomeCartao(sc.nextLine());
+                    System.out.println("Digite o cvv do cartão");
+                    venda.setCvv(sc.nextLine());
+                    System.out.println("Digite o vencimento do cartão");
+                    venda.setVencimento(sc.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Digite o valor recebido em dinheiro");
+                    double valorRecebido = sc.nextDouble();
+                    if (valorRecebido > valorTotal) {
+                        double troco = valorRecebido - valorTotal;
+                        System.out.println("Voltar um troco de R$" + troco);
+                    }
+                    break;
+            }
+            System.out.println("Deseja alterar a venda?");
+            System.out.println("1. SIM");
+            System.out.println("2. NÃO");
+            opcao = sc.nextInt();
+        } while (opcao == 1);
+        System.out.println("Venda realizada com sucesso!");
+    }
+    else {
+        System.out.println("Código invalido");
+    }
+}
+
+}
+
